@@ -21,7 +21,7 @@ import {
   options,
 } from "@/components/form/radio-group-form-field"
 import { SelectFormField } from "@/components/form/select-form-field"
-import { SwitchFormField } from "@/components/form/switch-form-field"
+import { TextAreaField } from "@/components/form/text-area-field"
 
 interface RecipeFormProps {
   onSubmit: (values: FormData, e: React.FormEvent) => void
@@ -40,14 +40,14 @@ export function RecipeForm({ onSubmit, isLoading }: RecipeFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-full space-y-4 md:px-4"
       >
-        <FormField
+        {/* <FormField
           control={form.control}
           name="ingredients"
           render={({ field }) => (
             <FormItem>
               <RecipeFormLabel
                 stepIndex="1"
-                labelIndex="What ingredients do you have?"
+                labelIndex="?"
               />
               <FormControl>
                 <Input placeholder="Add some ingredients" {...field} />
@@ -55,7 +55,7 @@ export function RecipeForm({ onSubmit, isLoading }: RecipeFormProps) {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="cooking_time"
@@ -63,16 +63,16 @@ export function RecipeForm({ onSubmit, isLoading }: RecipeFormProps) {
             <FormItem className="space-y-3">
               <RecipeFormLabel
                 stepIndex="2"
-                labelIndex="How much time do you have?"
+                labelIndex="How many days?"
               />
               <FormControl>
                 <Slider
-                  id="cooking-time"
+                  id="days"
                   aria-label="Choose cooking time"
                   defaultValue={[5]}
                   max={120}
                   step={10}
-                  min={5}
+                  min={3}
                   onValueChange={field.onChange}
                   {...field}
                 >
@@ -80,7 +80,7 @@ export function RecipeForm({ onSubmit, isLoading }: RecipeFormProps) {
                 </Slider>
               </FormControl>
               <FormDescription className="flex flex-row-reverse">
-                🕛 {field.value} minutes
+                🕛 {field.value} days
               </FormDescription>
             </FormItem>
           )}
@@ -90,21 +90,12 @@ export function RecipeForm({ onSubmit, isLoading }: RecipeFormProps) {
           <RadioGroupFormField form={form} name="people" options={options} />
         </FormItem>
         <FormItem>
-          <RecipeFormLabel stepIndex="4" labelIndex="Are you a good chef?" />
-          <SelectFormField form={form} name="difficulty" />
+          <RecipeFormLabel stepIndex="4" labelIndex="In which continent?" />
+          <SelectFormField form={form} name="continent" />
         </FormItem>
         <FormItem>
-          <RecipeFormLabel
-            stepIndex="5"
-            labelIndex="Do you have diet preference?"
-          />
-          <SwitchFormField
-            form={form}
-            name="low_calori"
-            label="⚖️ Low-calori"
-          />
-          <SwitchFormField form={form} name="vegan" label="🌿 Vegan" />
-          <SwitchFormField form={form} name="paleo" label="🍖 Paleo" />
+          <RecipeFormLabel stepIndex="4" labelIndex="Tell us more" />
+          <TextAreaField form={form} name="more" />
         </FormItem>
         {isLoading ? (
           <Button disabled size="lg" className="w-full font-semibold">

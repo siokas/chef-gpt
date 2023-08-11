@@ -30,9 +30,12 @@ export function SelectFormField({ form, name }: SelectFormFieldProps) {
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              <SelectItem value="easy">Novice</SelectItem>
-              <SelectItem value="intermediate">Intermediate</SelectItem>
-              <SelectItem value="expert">Expert</SelectItem>
+              <SelectItem value="africa">Africa</SelectItem>
+              <SelectItem value="asia">Asia</SelectItem>
+              <SelectItem value="australia">Australia</SelectItem>
+              <SelectItem value="europe">Europe</SelectItem>
+              <SelectItem value="north-america">North America</SelectItem>
+              <SelectItem value="south-america">South America</SelectItem>
             </SelectContent>
           </Select>
         </FormItem>
